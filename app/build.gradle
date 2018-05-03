@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion sdkVersion
+    buildToolsVersion buildToolsVersionVersion
+
+    defaultConfig {
+        applicationId "com.github.aleksandermielczarek.espressoexample"
+        minSdkVersion minSdkVersionVersion
+        targetSdkVersion sdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
+    }
+    testOptions {
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+    }
+}
+
+dependencies {
+    //test
+    testImplementation "junit:junit:$junitVersion"
+
+    //android test
+    androidTestImplementation "com.android.support.test:runner:$runnerVersion"
+    androidTestImplementation "com.android.support.test:rules:$runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
+    androidTestUtil "com.android.support.test:orchestrator:$runnerVersion"
+    androidTestImplementation("com.github.tomakehurst:wiremock:$wiremockVersion") {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'asm', module: 'asm'
+        exclude group: 'org.json', module: 'json'
+    }
+    androidTestImplementation "org.apache.httpcomponents:httpclient-android:$httpclientAndroidVersion"
+
+    //support
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+}
+

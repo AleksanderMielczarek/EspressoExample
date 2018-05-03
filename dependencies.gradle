@@ -1,0 +1,25 @@
+ext {
+    //tools
+    minSdkVersionVersion = 21
+    sdkVersion = 27
+    buildToolsVersionVersion = "27.0.3"
+
+    //plugins
+    toolsVersion = '3.1.2'
+    versionsVersion = '0.17.0'
+
+    //kotlin
+    kotlinVersion = '1.2.41'
+
+    //test
+    junitVersion = '4.12'
+
+    //android test
+    espressoCoreVersion = '3.0.2'
+    runnerVersion = '1.0.2'
+    wiremockVersion = '2.17.0'
+    httpclientAndroidVersion = '4.3.5.1'
+
+    //support
+    supportLibraryVersion = '27.1.1'
+}
